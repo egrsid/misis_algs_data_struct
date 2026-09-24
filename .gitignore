@@ -1,0 +1,34 @@
+*.jpg
+*.jpeg
+.DS_Store
+.ds_store
+.vscode/
+
+cource_task_images/
+
+# === Объектные файлы ===
+*.o
+*.obj
+bin.dbg
+*.gch
+*.pch
+
+# === Библиотеки (статические и динамические) ===
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+
+# === Исполняемые файлы ===
+*.exe
+*.out
+*.app
+
+# === Папки сборки (зависит от вашей IDE / системы сборки) ===
+# Скомпилированные бинарники и папки сборки
+bin.dbg/
+bin.rel/
+bin.relwithdbg/
+build/
+.cache/
