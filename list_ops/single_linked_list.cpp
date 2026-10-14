@@ -121,9 +121,61 @@ Node* delete_el_from_lst_recursive(Node* begin, size_t idx) {
     return begin;
 }
 
+Node* push_front(Node* begin, int val) {
+    return new Node{val, begin};
+}
+
+void push_front_inplace(Node*& begin, int val) {
+    begin = new Node{val, begin};
+}
+
+void push_front_ptr(Node** begin, int val) {
+    Node* new_node = new Node{val, *begin};
+    *begin = new_node;
+}
+
+Node* pop_front(Node* begin) {
+    if (begin == nullptr) return nullptr;
+
+    Node* new_begin = begin->next_;
+    delete begin;
+
+    return new_begin;
+}
+
+void pop_front_inplace(Node*& begin) {
+    if (begin == nullptr) return;
+
+    Node* old_begin = begin;
+    begin = begin->next_;
+    delete old_begin;
+}
+
+void pop_front_ptr(Node** begin) {
+    if (begin == nullptr) return;
+
+    Node* old_begin = *begin;
+    *begin = (*begin)->next_;
+    delete old_begin;
+}
+
+Node* insert(Node* begin, int idx, int val) {
+    if (idx == 0) return push_front(begin, val);
+
+    Node* head = begin;
+    
+    for (size_t i = 0; i < idx-1 && begin->next_ != nullptr; ++i) begin = begin->next_;
+
+    begin->next_ = new Node{val, begin->next_};
+
+    return head;
+}
+
+
+
 int main() {
     int arr[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     Node* begin = lst_from_array(arr, 10);
-    begin = delete_el_from_lst_recursive(begin, 100);
+    begin = insert(begin, 2, 100);
     print_list_iterative(begin);
 }
